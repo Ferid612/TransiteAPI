@@ -1,0 +1,424 @@
+-- Table: public.example_table
+
+-- DROP TABLE IF EXISTS public.example_table;
+
+CREATE TABLE IF NOT EXISTS public.example_table
+(
+    user_id bigint NOT NULL,
+    "Name" text COLLATE pg_catalog."default",
+    "Position" text COLLATE pg_catalog."default",
+    "Office" text COLLATE pg_catalog."default",
+    "Age" bigint,
+    "Start date" text COLLATE pg_catalog."default",
+    "Salary" text COLLATE pg_catalog."default",
+    "Unnamed: 7" bigint,
+    CONSTRAINT example_table_pkey PRIMARY KEY (user_id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.example_table
+    OWNER to postgres;
+
+
+================================================================================================
+
+
+-- Table: public.system_avia
+
+-- DROP TABLE IF EXISTS public.system_avia;
+
+CREATE TABLE IF NOT EXISTS public.system_avia
+(
+    "Status_N" bigint,
+    "Çıxış aeroport" text COLLATE pg_catalog."default",
+    "Gəliş aeroport" text COLLATE pg_catalog."default",
+    "İcraçı" text COLLATE pg_catalog."default",
+    "Yükgöndərən" text COLLATE pg_catalog."default",
+    "Yükalan" text COLLATE pg_catalog."default",
+    "Yükün adı" text COLLATE pg_catalog."default",
+    "Pallet sayı" bigint,
+    "Çəkisi" text COLLATE pg_catalog."default",
+    "Kub" bigint,
+    "Yükləmə tarixi" text COLLATE pg_catalog."default",
+    "Aviaşirkətin adı" text COLLATE pg_catalog."default",
+    "Aviaşirkətdən verilən qiymət EUR" double precision,
+    "Biz verdiyimiz qiymət EUR" double precision,
+    "Biz verdiyimiz qiymət USD" double precision,
+    "Biz verdiyimiz qiymət AZN" double precision,
+    "Daşıyıcıya nağd ödəniş EUR" double precision,
+    "Daşıyıcıya nağd ödəniş USD" double precision,
+    "Daşıyıcıya nağd ödəniş AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR" double precision,
+    "Daşıyıcıya qalıq məbləğ EUR" double precision,
+    "Daşıyıcıya qalıq məbləğ USD" double precision,
+    "Daşıyıcıya qalıq məbləğ AZN" double precision,
+    "Digər xərclər EUR" double precision,
+    "Digər xərclər USD" double precision,
+    "Digər xərclər AZN" double precision,
+    "QEYD" text COLLATE pg_catalog."default",
+    "İnvoice tarixi və nömrəsi" text COLLATE pg_catalog."default",
+    "İnvoice məbləği EUR" double precision,
+    "İnvoice məbləği USD" double precision,
+    "İnvoice məbləği AZN" double precision,
+    "İnvoice fayl" text COLLATE pg_catalog."default",
+    "Qaimə nömrəsi" bigint,
+    "A.W.B" text COLLATE pg_catalog."default",
+    "Nağd alacağımız EUR" double precision,
+    "Nağd alacağımız USD" double precision,
+    "Nağd alacağımız AZN" double precision,
+    "Ödəniş Çexiya daxil olan EUR" double precision,
+    "Ödəniş Çexiya daxil olan USD" double precision,
+    "Ödəniş Çexiya daxil olan AZN" double precision,
+    "Yükün çatma tarixi" text COLLATE pg_catalog."default",
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 0 MINVALUE 0 MAXVALUE 9223372036854775807 CACHE 1 ),
+    CONSTRAINT system_avia_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.system_avia
+    OWNER to postgres;
+
+
+
+
+=====================================================
+
+-- Table: public.system_container
+
+-- DROP TABLE IF EXISTS public.system_container;
+
+CREATE TABLE IF NOT EXISTS public.system_container
+(
+    "Status_N" bigint,
+    "İcraçı" text COLLATE pg_catalog."default",
+    "Yükgöndərən" text COLLATE pg_catalog."default",
+    "Yükalan" text COLLATE pg_catalog."default",
+    "Yükün adı" text COLLATE pg_catalog."default",
+    "Pallet sayı" bigint,
+    "Çəkisi" text COLLATE pg_catalog."default",
+    "Kub" text COLLATE pg_catalog."default",
+    "Dərəcəsi" double precision,
+    "Yükləmə tarixi" text COLLATE pg_catalog."default",
+    "Daşıyan şirkətin adı" double precision,
+    "Maşının nömrəsi" text COLLATE pg_catalog."default",
+    "Daşıyan şirkətdən alınan qiymət EUR" double precision,
+    "Daşıyan şirkətdən alınan qiymət USD" double precision,
+    "Biz verdiyimiz qiymət EUR" double precision,
+    "Biz verdiyimiz qiymət USD" double precision,
+    "Biz verdiyimiz qiymət AZN" double precision,
+    "Daşıyıcıya nağd ödəniş EUR" double precision,
+    "Daşıyıcıya nağd ödəniş USD" double precision,
+    "Daşıyıcıya nağd ödəniş AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR" double precision,
+    "Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD" double precision,
+    "Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR" double precision,
+    "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD" double precision,
+    "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.1" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.2" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.3" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.4" double precision,
+    "Daşıyıcıya qalıq məbləğ EUR" double precision,
+    "Daşıyıcıya qalıq məbləğ USD" double precision,
+    "Daşıyıcıya qalıq məbləğ AZN" double precision,
+    "Digər xərclər EUR" double precision,
+    "Digər xərclər USD" double precision,
+    "Digər xərclər AZN" double precision,
+    "QEYD" double precision,
+    "İnvoice tarixi və nömrəsi" double precision,
+    "İnvoice məbləği EUR" double precision,
+    "İnvoice məbləği USD" double precision,
+    "İnvoice məbləği AZN" double precision,
+    "İnvoice fayl" double precision,
+    "Qaimə nömrəsi" double precision,
+    "Nağd alacağımız EUR" double precision,
+    "Nağd alacağımız USD" double precision,
+    "Nağd alacağımız AZN" double precision,
+    "Ödəniş Çexiya daxil olan EUR" double precision,
+    "Ödəniş Çexiya daxil olan USD" double precision,
+    "Ödəniş Çexiya daxil olan AZN" double precision,
+    "Ödəniş Türkiyə daxil olan EUR" double precision,
+    "Ödəniş Türkiyə daxil olan USD" double precision,
+    "Ödəniş Türkiyə daxil olan AZN" double precision,
+    "Ödəniş Azərbaycan daxil olan EUR" double precision,
+    "Ödəniş Azərbaycan daxil olan USD" double precision,
+    "Ödəniş Azərbaycan daxil olan AZN" double precision,
+    "Yükün çatma tarixi" double precision,
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 0 MINVALUE 0 MAXVALUE 9223372036854775807 CACHE 1 ),
+    CONSTRAINT system_container_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.system_container
+    OWNER to postgres;
+
+
+====================================
+
+-- Table: public.system_europe
+
+-- DROP TABLE IF EXISTS public.system_europe;
+
+CREATE TABLE IF NOT EXISTS public.system_europe
+(
+    "Status_N" bigint,
+    "İcraçı" text COLLATE pg_catalog."default",
+    "Yükgöndərən" text COLLATE pg_catalog."default",
+    "Yükalan" text COLLATE pg_catalog."default",
+    "Yükün adı" text COLLATE pg_catalog."default",
+    "Pallet sayı" bigint,
+    "Çəkisi" text COLLATE pg_catalog."default",
+    "Kub" bigint,
+    "Yükləmə tarixi" text COLLATE pg_catalog."default",
+    "Maşının nömrəsi" text COLLATE pg_catalog."default",
+    "Unnamed: 11" double precision,
+    "Çexiyadan verilən qiymət EUR" double precision,
+    "Biz verdiyimiz qiymət EUR" double precision,
+    "Biz verdiyimiz qiymət USD" double precision,
+    "Biz verdiyimiz qiymət AZN" double precision,
+    "Daşıyıcıdan verilən qiymət EUR" double precision,
+    "Daşıyıcıdan verilən qiymət USD" double precision,
+    "Daşıyıcıdan verilən qiymət AZN" double precision,
+    "Daşıyıcıya nağd ödəniş EUR" double precision,
+    "Daşıyıcıya nağd ödəniş USD" double precision,
+    "Daşıyıcıya nağd ödəniş AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR" double precision,
+    "Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD" double precision,
+    "Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR" double precision,
+    "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD" double precision,
+    "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.1" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.2" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.3" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.4" double precision,
+    "Daşıyıcıya qalıq məbləğ EUR" double precision,
+    "Daşıyıcıya qalıq məbləğ USD" double precision,
+    "Daşıyıcıya qalıq məbləğ AZN" double precision,
+    "Digər xərclər EUR" double precision,
+    "Digər xərclər USD" double precision,
+    "Digər xərclər AZN" double precision,
+    "QEYD" text COLLATE pg_catalog."default",
+    "Anbardan yüklənmə tarixi" text COLLATE pg_catalog."default",
+    "İnvoice tarixi və nömrəsi" text COLLATE pg_catalog."default",
+    "İnvoice məbləği EUR" double precision,
+    "İnvoice məbləği USD" double precision,
+    "İnvoice məbləği AZN" double precision,
+    "İnvoice fayl" text COLLATE pg_catalog."default",
+    "Qaimə nömrəsi" bigint,
+    "Nağd alacağımız EUR" double precision,
+    "Nağd alacağımız USD" double precision,
+    "Nağd alacağımız AZN" double precision,
+    "Ödəniş Çexiya daxil olan EUR" double precision,
+    "Ödəniş Çexiya daxil olan USD" double precision,
+    "Ödəniş Çexiya daxil olan AZN" double precision,
+    "Ödəniş Türkiyə daxil olan EUR" double precision,
+    "Ödəniş Türkiyə daxil olan USD" double precision,
+    "Ödəniş Türkiyə daxil olan AZN" double precision,
+    "Ödəniş Azərbaycan daxil olan EUR" double precision,
+    "Ödəniş Azərbaycan daxil olan USD" double precision,
+    "Ödəniş Azərbaycan daxil olan AZN" double precision,
+    "Yükün çatma tarixi" text COLLATE pg_catalog."default",
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 0 MINVALUE 0 MAXVALUE 9223372036854775807 CACHE 1 ),
+    "T.1" text COLLATE pg_catalog."default",
+    "Ex.1" text COLLATE pg_catalog."default",
+    CONSTRAINT system_europe_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.system_europe
+    OWNER to postgres;
+
+
+
+===========================================================
+
+
+-- Table: public.system_russia
+
+-- DROP TABLE IF EXISTS public.system_russia;
+
+CREATE TABLE IF NOT EXISTS public.system_russia
+(
+    "Status_N" bigint,
+    "İcraçı" text COLLATE pg_catalog."default",
+    "Yükgöndərən" text COLLATE pg_catalog."default",
+    "Yükalan" text COLLATE pg_catalog."default",
+    "Yükün adı" text COLLATE pg_catalog."default",
+    "Pallet sayı" bigint,
+    "Çəkisi" text COLLATE pg_catalog."default",
+    "Kub" bigint,
+    "Yükləmə tarixi" text COLLATE pg_catalog."default",
+    "Maşının nömrəsi" text COLLATE pg_catalog."default",
+    "Daşıyıcıdan verilən qiymət USD" double precision,
+    "Biz verdiyimiz qiymət EUR" double precision,
+    "Biz verdiyimiz qiymət USD" double precision,
+    "Biz verdiyimiz qiymət AZN" double precision,
+    "Daşıyıcıya nağd ödəniş EUR" double precision,
+    "Daşıyıcıya nağd ödəniş USD" double precision,
+    "Daşıyıcıya nağd ödəniş AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR" double precision,
+    "Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD" double precision,
+    "Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Azərbaycan hesabı EUR" double precision,
+    "Daşıyıcıya köçürmə ödəniş Azərbaycan hesabı USD" double precision,
+    "Daşıyıcıya köçürmə ödəniş Azərbaycan hesabı AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.1" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.2" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.3" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.4" double precision,
+    "Daşıyıcıya qalıq məbləğ EUR" double precision,
+    "Daşıyıcıya qalıq məbləğ USD" double precision,
+    "Daşıyıcıya qalıq məbləğ AZN" double precision,
+    "Digər xərclər EUR" double precision,
+    "Digər xərclər USD" double precision,
+    "Digər xərclər AZN" double precision,
+    "QEYD" text COLLATE pg_catalog."default",
+    "İnvoice tarixi və nömrəsi" text COLLATE pg_catalog."default",
+    "İnvoice məbləği EUR" double precision,
+    "İnvoice məbləği USD" double precision,
+    "İnvoice məbləği AZN" double precision,
+    "İnvoice fayl" text COLLATE pg_catalog."default",
+    "Qaimə nömrəsi" bigint,
+    "Nağd alacağımız EUR" double precision,
+    "Nağd alacağımız USD" double precision,
+    "Nağd alacağımız AZN" double precision,
+    "Ödəniş Çexiya daxil olan EUR" double precision,
+    "Ödəniş Çexiya daxil olan USD" double precision,
+    "Ödəniş Çexiya daxil olan AZN" double precision,
+    "Ödəniş Türkiyə daxil olan EUR" double precision,
+    "Ödəniş Türkiyə daxil olan USD" double precision,
+    "Ödəniş Türkiyə daxil olan AZN" double precision,
+    "Ödəniş Azərbaycan daxil olan EUR" double precision,
+    "Ödəniş Azərbaycan daxil olan USD" double precision,
+    "Ödəniş Azərbaycan daxil olan AZN" double precision,
+    "Yükün çatma tarixi" text COLLATE pg_catalog."default",
+    "is" bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 0 MINVALUE 0 MAXVALUE 9223372036854775807 CACHE 1 ),
+    CONSTRAINT system_russia_pkey PRIMARY KEY ("is")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.system_russia
+    OWNER to postgres;
+
+
+=====================================
+
+-- Table: public.system_table
+
+-- DROP TABLE IF EXISTS public.system_table;
+
+CREATE TABLE IF NOT EXISTS public.system_table
+(
+    "İcraçı" text COLLATE pg_catalog."default",
+    "Yükgöndərən" text COLLATE pg_catalog."default",
+    "Yükalan" text COLLATE pg_catalog."default",
+    "Yükün adı" text COLLATE pg_catalog."default",
+    "Çəkisi" text COLLATE pg_catalog."default",
+    "Kub" text COLLATE pg_catalog."default",
+    "Yükləmə tarixi" text COLLATE pg_catalog."default",
+    "Maşının nömrəsi" text COLLATE pg_catalog."default",
+    "Unnamed: 11" double precision,
+    "Çexiyadan verilən qiymət EUR" double precision,
+    "Biz verdiyimiz qiymət EUR" double precision,
+    "Biz verdiyimiz qiymət USD" double precision,
+    "Biz verdiyimiz qiymət AZN" double precision,
+    "Daşıyıcıdan verilən qiymət EUR" double precision,
+    "Daşıyıcıdan verilən qiymət USD" double precision,
+    "Daşıyıcıdan verilən qiymət AZN" double precision,
+    "Daşıyıcıya nağd ödəniş EUR" double precision,
+    "Daşıyıcıya nağd ödəniş USD" double precision,
+    "Daşıyıcıya nağd ödəniş AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR" double precision,
+    "Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD" double precision,
+    "Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR" double precision,
+    "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD" double precision,
+    "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.1" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.2" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.3" double precision,
+    "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD.4" double precision,
+    "Daşıyıcıya qalıq məbləğ EUR" double precision,
+    "Daşıyıcıya qalıq məbləğ USD" double precision,
+    "Daşıyıcıya qalıq məbləğ AZN" double precision,
+    "Digər xərclər EUR" double precision,
+    "Digər xərclər USD" double precision,
+    "Digər xərclər AZN" double precision,
+    "QEYD" double precision,
+    "İnvoice tarixi və nömrəsi" double precision,
+    "İnvoice məbləği EUR" double precision,
+    "İnvoice məbləği USD" double precision,
+    "İnvoice məbləği AZN" double precision,
+    "İnvoice fayl" double precision,
+    "Qaimə nömrəsi" double precision,
+    "Nağd alacağımız EUR" double precision,
+    "Nağd alacağımız USD" double precision,
+    "Nağd alacağımız AZN" double precision,
+    "Ödəniş Çexiya daxil olan EUR" double precision,
+    "Ödəniş Çexiya daxil olan USD" double precision,
+    "Ödəniş Çexiya daxil olan AZN" double precision,
+    "Ödəniş Türkiyə daxil olan EUR" double precision,
+    "Ödəniş Türkiyə daxil olan USD" double precision,
+    "Ödəniş Türkiyə daxil olan AZN" double precision,
+    "Ödəniş Azərbaycan daxil olan EUR" double precision,
+    "Ödəniş Azərbaycan daxil olan USD" double precision,
+    "Ödəniş Azərbaycan daxil olan AZN" double precision,
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 0 MINVALUE 0 MAXVALUE 9223372036854775807 CACHE 1 ),
+    "Pallet sayı" text COLLATE pg_catalog."default",
+    "Status_N" text COLLATE pg_catalog."default",
+    CONSTRAINT table_example_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.system_table
+    OWNER to postgres;
+
+
+======================================================================
+
+
+-- Table: public.transite_users
+
+-- DROP TABLE IF EXISTS public.transite_users;
+
+CREATE TABLE IF NOT EXISTS public.transite_users
+(
+    user_id bigint NOT NULL,
+    username text COLLATE pg_catalog."default" NOT NULL,
+    password text COLLATE pg_catalog."default",
+    first_name text COLLATE pg_catalog."default",
+    last_name text COLLATE pg_catalog."default",
+    "FIN" text COLLATE pg_catalog."default",
+    mail text COLLATE pg_catalog."default",
+    phone_number text COLLATE pg_catalog."default",
+    user_type text COLLATE pg_catalog."default",
+    user_token text COLLATE pg_catalog."default",
+    region text COLLATE pg_catalog."default",
+    CONSTRAINT transite_users_pkey PRIMARY KEY (user_id),
+    CONSTRAINT transite_users_username_key UNIQUE (username)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.transite_users
+    OWNER to postgres;
