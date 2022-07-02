@@ -478,8 +478,14 @@ def download_csv(request):
     user_region = request.POST.get('user_region')
 
     selected_region = request.POST.get('selected_region')
+    # print("Selected_region: ", selected_region)
+    # print("user_region: ", user_region)
+    # print("is_admin_minus: ", token_verification(request)['is_admin_minus'])
+    
     if token_verification(request)['is_admin_minus'] != True: 
     
+        user_select_region = user_region
+        
         if(user_region == 'All'): 
             data_table = System_table
             head_columns= head_columns_system
@@ -501,6 +507,9 @@ def download_csv(request):
             head_columns = head_columns_container
             
     else:
+        
+        user_select_region = selected_region
+        
         if(selected_region == 'System'): 
             data_table = System_table
             head_columns= head_columns_system
@@ -556,7 +565,7 @@ def download_csv(request):
     
     # * change dataframe to csv file and return whith response 
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = f'attachment; filename=Sistem_{user_region}_table_{datetime.now().strftime("%Y.%m.%d_%H.%M")}.csv' 
+    response['Content-Disposition'] = f'attachment; filename=Sistem_{user_select_region}_table_{datetime.now().strftime("%Y.%m.%d_%H.%M")}.csv' 
     response.write(u'\ufeff'.encode('utf8'))
     
     
