@@ -35,7 +35,7 @@ def get_engine(user, passwd, host, port, db):
 DATABASE_NAME = 'postgres'
 DATABASE_USER = 'transite_user'
 DATABASE_SERVER =  'server-name-transite.postgres.database.azure.com'
-DATABASE_PASSWORD = 'Ayise987654321'
+DATABASE_PASSWORD = 'Ayise987654321!'
 
 
 # DATABASE_NAME ='Transite'
