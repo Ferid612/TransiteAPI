@@ -142,6 +142,19 @@ def get_table(request):
                 dasiyiciya_nagd_odenis_usd = example_df['Daşıyıcıya nağd ödəniş USD'].sum()
                 dasiyiciya_nagd_odenis_azn = example_df['Daşıyıcıya nağd ödəniş AZN'].sum()
                 
+                dasiyiciya_kocurme_odenis_chexiya_eur = 0
+                dasiyiciya_kocurme_odenis_chexiya_usd = 0
+                dasiyiciya_kocurme_odenis_chexiya_azn = 0
+                
+                dasiyiciya_kocurme_odenis_turkiye_eur = 0
+                dasiyiciya_kocurme_odenis_turkiye_usd = 0
+                dasiyiciya_kocurme_odenis_turkiye_azn = 0
+                
+                dasiyiciya_kocurme_odenis_azerbaycan_eur = 0
+                dasiyiciya_kocurme_odenis_azerbaycan_usd = 0
+                dasiyiciya_kocurme_odenis_azerbaycan_azn = 0
+            try:
+                
                 dasiyiciya_kocurme_odenis_chexiya_eur = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR'].sum()
                 dasiyiciya_kocurme_odenis_chexiya_usd = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD'].sum()
                 dasiyiciya_kocurme_odenis_chexiya_azn = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN'].sum()
@@ -153,7 +166,8 @@ def get_table(request):
                 dasiyiciya_kocurme_odenis_azerbaycan_eur = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR'].sum()
                 dasiyiciya_kocurme_odenis_azerbaycan_usd = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD'].sum()
                 dasiyiciya_kocurme_odenis_azerbaycan_azn = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN'].sum()
-            
+            except Exception as e:
+                print("exception sum: ", str(e))
             
                 diger_xercler_eur = example_df['Digər xərclər EUR'].sum()
                 diger_xercler_usd = example_df['Digər xərclər USD'].sum()
