@@ -141,6 +141,18 @@ def get_table(request):
                 dasiyiciya_nagd_odenis_eur = example_df['Daşıyıcıya nağd ödəniş EUR'].sum()
                 dasiyiciya_nagd_odenis_usd = example_df['Daşıyıcıya nağd ödəniş USD'].sum()
                 dasiyiciya_nagd_odenis_azn = example_df['Daşıyıcıya nağd ödəniş AZN'].sum()
+                
+                dasiyiciya_kocurme_odenis_chexiya_eur = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR'].sum()
+                dasiyiciya_kocurme_odenis_chexiya_usd = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD'].sum()
+                dasiyiciya_kocurme_odenis_chexiya_azn = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN'].sum()
+                
+                dasiyiciya_kocurme_odenis_turkiye_eur = example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR'].sum()
+                dasiyiciya_kocurme_odenis_turkiye_usd = example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD'].sum()
+                dasiyiciya_kocurme_odenis_turkiye_azn = example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN'].sum()
+            
+                dasiyiciya_kocurme_odenis_azerbaycan_eur = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR'].sum()
+                dasiyiciya_kocurme_odenis_azerbaycan_usd = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD'].sum()
+                dasiyiciya_kocurme_odenis_azerbaycan_azn = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN'].sum()
             
             
                 diger_xercler_eur = example_df['Digər xərclər EUR'].sum()
@@ -165,6 +177,18 @@ def get_table(request):
                                         'dasiyiciya_nagd_odenis_eur': dasiyiciya_nagd_odenis_eur,
                                         'dasiyiciya_nagd_odenis_usd': dasiyiciya_nagd_odenis_usd,
                                         'dasiyiciya_nagd_odenis_azn': dasiyiciya_nagd_odenis_azn,
+                                        
+                                        'dasiyiciya_kocurme_odenis_chexiya_eur':dasiyiciya_kocurme_odenis_chexiya_eur,
+                                        'dasiyiciya_kocurme_odenis_chexiya_usd':dasiyiciya_kocurme_odenis_chexiya_usd,
+                                        'dasiyiciya_kocurme_odenis_chexiya_azn':dasiyiciya_kocurme_odenis_chexiya_azn,
+                                        
+                                        'dasiyiciya_kocurme_odenis_turkiye_eur' : dasiyiciya_kocurme_odenis_turkiye_eur,
+                                        'dasiyiciya_kocurme_odenis_turkiye_usd' : dasiyiciya_kocurme_odenis_turkiye_usd,
+                                        'dasiyiciya_kocurme_odenis_turkiye_azn' : dasiyiciya_kocurme_odenis_turkiye_azn,
+                                        
+                                        'dasiyiciya_kocurme_odenis_azerbaycan_eur' : dasiyiciya_kocurme_odenis_azerbaycan_eur,
+                                        'dasiyiciya_kocurme_odenis_azerbaycan_usd' : dasiyiciya_kocurme_odenis_azerbaycan_usd,
+                                        'dasiyiciya_kocurme_odenis_azerbaycan_azn' : dasiyiciya_kocurme_odenis_azerbaycan_azn,
                                         
                                         'odenis_chexiya_daxil_olan_eur': odenis_chexiya_daxil_olan_eur,
                                         'odenis_chexiya_daxil_olan_usd': odenis_chexiya_daxil_olan_usd,
