@@ -17,7 +17,6 @@ ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
-
 # SQL Alchemy Configuration
 def get_engine(user, passwd, host, port, db):
     url = f"postgresql://{user}:{passwd}@{host}:{port}/{db}"
