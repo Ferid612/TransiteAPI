@@ -24,8 +24,9 @@ def testing(request):
             my_traceback = traceback.format_exc()
             
             logging.error(my_traceback)
-            response = JsonResponse({'error_text':str(e),
-                                        'error_text_2':my_traceback
+            response = JsonResponse({
+                                    'error_text':str(e),
+                                    'error_text_2':my_traceback
                                         })
             response.status_code = 505
         
@@ -153,21 +154,22 @@ def get_table(request):
                 dasiyiciya_kocurme_odenis_azerbaycan_eur = 0
                 dasiyiciya_kocurme_odenis_azerbaycan_usd = 0
                 dasiyiciya_kocurme_odenis_azerbaycan_azn = 0
-            try:
+                try:
                 
-                dasiyiciya_kocurme_odenis_chexiya_eur = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR'].sum()
-                dasiyiciya_kocurme_odenis_chexiya_usd = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD'].sum()
-                dasiyiciya_kocurme_odenis_chexiya_azn = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN'].sum()
+                    dasiyiciya_kocurme_odenis_chexiya_eur = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR'].sum()
+                    dasiyiciya_kocurme_odenis_chexiya_usd = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD'].sum()
+                    dasiyiciya_kocurme_odenis_chexiya_azn = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN'].sum()
+                    
+                    dasiyiciya_kocurme_odenis_turkiye_eur = example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR'].sum()
+                    dasiyiciya_kocurme_odenis_turkiye_usd = example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD'].sum()
+                    dasiyiciya_kocurme_odenis_turkiye_azn = example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN'].sum()
                 
-                dasiyiciya_kocurme_odenis_turkiye_eur = example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR'].sum()
-                dasiyiciya_kocurme_odenis_turkiye_usd = example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD'].sum()
-                dasiyiciya_kocurme_odenis_turkiye_azn = example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN'].sum()
+                    dasiyiciya_kocurme_odenis_azerbaycan_eur = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR'].sum()
+                    dasiyiciya_kocurme_odenis_azerbaycan_usd = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD'].sum()
+                    dasiyiciya_kocurme_odenis_azerbaycan_azn = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN'].sum()
+                except Exception as e:
+                    print("exception sum: ", str(e))
             
-                dasiyiciya_kocurme_odenis_azerbaycan_eur = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR'].sum()
-                dasiyiciya_kocurme_odenis_azerbaycan_usd = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD'].sum()
-                dasiyiciya_kocurme_odenis_azerbaycan_azn = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN'].sum()
-            except Exception as e:
-                print("exception sum: ", str(e))
             
                 diger_xercler_eur = example_df['Digər xərclər EUR'].sum()
                 diger_xercler_usd = example_df['Digər xərclər USD'].sum()
@@ -180,13 +182,73 @@ def get_table(request):
                 net_mebleg_azn = invoice_mebleq_azn - (odenis_chexiya_daxil_olan_azn + dasiyiciya_nagd_odenis_azn + diger_xercler_azn)
             
         
-            
+                # sum two columns and create report
+
+                example_df['Yükalanın ödədiyi pul EUR'] = example_df['Yükalanın ödədiyi pul EUR'].fillna(0)
+                example_df['Yükalanın ödədiyi pul USD'] = example_df['Yükalanın ödədiyi pul USD'].fillna(0)
+                example_df['Yükalanın ödədiyi pul AZN'] = example_df['Yükalanın ödədiyi pul AZN'].fillna(0)
                 
+                example_df['Yükalanın ödəyəcəyi pul EUR'] = example_df['Yükalanın ödəyəcəyi pul EUR'].fillna(0)
+                example_df['Yükalanın ödəyəcəyi pul USD'] = example_df['Yükalanın ödəyəcəyi pul USD'].fillna(0)
+                example_df['Yükalanın ödəyəcəyi pul AZN'] = example_df['Yükalanın ödəyəcəyi pul AZN'].fillna(0)
+                
+                example_df['Yükalanın bizə borcu EUR'] = example_df['Yükalanın ödəyəcəyi pul EUR'] - example_df['Yükalanın ödədiyi pul EUR']
+                example_df['Yükalanın bizə borcu USD'] = example_df['Yükalanın ödəyəcəyi pul USD'] - example_df['Yükalanın ödədiyi pul USD']
+                example_df['Yükalanın bizə borcu AZN'] = example_df['Yükalanın ödəyəcəyi pul AZN'] - example_df['Yükalanın ödədiyi pul AZN']
+
+                yukalanlarin_bize_borcu_eur = example_df['Yükalanın bizə borcu EUR'].sum()
+                yukalanlarin_bize_borcu_usd = example_df['Yükalanın bizə borcu USD'].sum()
+                yukalanlarin_bize_borcu_azn = example_df['Yükalanın bizə borcu AZN'].sum()
+                
+            
+                example_df['Daşıyıcıya nağd ödəniş EUR'] = example_df['Daşıyıcıya nağd ödəniş EUR'].fillna(0)
+                example_df['Daşıyıcıya nağd ödəniş USD'] = example_df['Daşıyıcıya nağd ödəniş USD'].fillna(0)
+                example_df['Daşıyıcıya nağd ödəniş AZN'] = example_df['Daşıyıcıya nağd ödəniş AZN'].fillna(0)
+                
+                try:
+                    example_df['Daşıyıcıdan verilən qiymət EUR'] = example_df['Daşıyıcıdan verilən qiymət EUR'].fillna(0)
+                    example_df['Daşıyıcıdan verilən qiymət USD'] = example_df['Daşıyıcıdan verilən qiymət USD'].fillna(0)
+                    example_df['Daşıyıcıdan verilən qiymət AZN'] = example_df['Daşıyıcıdan verilən qiymət AZN'].fillna(0)
+                except Exception as e:
+                    print("Error handling daşıyıcıdan: ", e)
+                    example_df['Daşıyıcıdan verilən qiymət EUR'] = 0
+                    example_df['Daşıyıcıdan verilən qiymət USD'] = 0
+                    example_df['Daşıyıcıdan verilən qiymət AZN'] = 0
+                
+                example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR'] = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR'].fillna(0)
+                example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD'] = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD'].fillna(0)
+                example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN'] = example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN'].fillna(0)
+                
+                example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR'] = example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR'].fillna(0)
+                example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD'] = example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD'].fillna(0)
+                example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN'] = example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN'].fillna(0)
+                
+                example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR'] = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR'].fillna(0)
+                example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD'] = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD'].fillna(0)
+                example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN'] = example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN'].fillna(0)
+                
+                example_df['Daşıyıcıya qalıq borc EUR'] = example_df['Daşıyıcıdan verilən qiymət EUR'] - (example_df['Daşıyıcıya nağd ödəniş EUR'] + example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR'] + example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR'] + example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR'])
+                example_df['Daşıyıcıya qalıq borc USD'] = example_df['Daşıyıcıdan verilən qiymət USD'] - (example_df['Daşıyıcıya nağd ödəniş USD'] + example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD'] + example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD'] + example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD'])    
+                example_df['Daşıyıcıya qalıq borc AZN'] = example_df['Daşıyıcıdan verilən qiymət AZN'] - (example_df['Daşıyıcıya nağd ödəniş AZN'] + example_df['Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN'] + example_df['Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN'] + example_df['Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN'])
+
+                dasiyicilara_qaliq_borc_eur = example_df['Daşıyıcıya qalıq borc EUR'].sum()
+                dasiyicilara_qaliq_borc_usd = example_df['Daşıyıcıya qalıq borc USD'].sum()
+                dasiyicilara_qaliq_borc_azn = example_df['Daşıyıcıya qalıq borc AZN'].sum()
+
+
                 example_html = example_df.to_html()
                 session.commit()
 
-            
-                response = JsonResponse({'example_table': example_html, 
+                # print('dasiyicilara_qaliq_borc_eur: ', dasiyicilara_qaliq_borc_eur)
+                # print('dasiyicilara_qaliq_borc_usd: ', dasiyicilara_qaliq_borc_usd)
+                # print('dasiyicilara_qaliq_borc_azn: ', dasiyicilara_qaliq_borc_azn)
+                
+                # print("yukalanlarin_bize_borcu_eur: ", yukalanlarin_bize_borcu_eur)
+                # print("yukalanlarin_bize_borcu_usd: ", yukalanlarin_bize_borcu_usd)
+                # print("yukalanlarin_bize_borcu_azn: ", yukalanlarin_bize_borcu_azn)
+                
+                response = JsonResponse({
+                                        'example_table': example_html, 
                                         'table_name': table_name, 
                                         'dasiyiciya_nagd_odenis_eur': dasiyiciya_nagd_odenis_eur,
                                         'dasiyiciya_nagd_odenis_usd': dasiyiciya_nagd_odenis_usd,
@@ -220,10 +282,19 @@ def get_table(request):
                                         'net_mebleg_usd': net_mebleg_usd,
                                         'net_mebleg_azn': net_mebleg_azn,
                                         
+                                        'yukalanlarin_bize_borcu_eur': float(yukalanlarin_bize_borcu_eur),
+                                        'yukalanlarin_bize_borcu_azn': float(yukalanlarin_bize_borcu_azn),
+                                        'yukalanlarin_bize_borcu_usd': float(yukalanlarin_bize_borcu_usd),
+                                            
+                                        'dasiyicilara_qaliq_borc_eur': float(dasiyicilara_qaliq_borc_eur),
+                                        'dasiyicilara_qaliq_borc_usd': float(dasiyicilara_qaliq_borc_usd),
+                                        'dasiyicilara_qaliq_borc_azn': float(dasiyicilara_qaliq_borc_azn),
+                                        
                                         })
                 # response.status_code=501
                 add_get_params(response)
                 return response
+            
             else:
             
                 example_html = example_df.to_html()
