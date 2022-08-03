@@ -19,20 +19,104 @@ from django.utils.html import escape
 from sqlalchemy.orm import Session
 
 
-head_columns_system =['Status_N', 'Yükün halı', 'İcraçı', 'Yükgöndərən', 'Yükalan', 'Yükün adı', 'Pallet sayı', 'Çəkisi', 'Kub', 'Yükləmə tarixi', 'Maşının nömrəsi', 'Çexiyadan verilən qiymət EUR', 'Biz verdiyimiz qiymət EUR', 'Biz verdiyimiz qiymət USD', 'Biz verdiyimiz qiymət AZN', 'Daşıyıcıdan verilən qiymət EUR', 'Daşıyıcıdan verilən qiymət USD', 'Daşıyıcıdan verilən qiymət AZN', 'Daşıyıcıya nağd ödəniş EUR', 'Daşıyıcıya nağd ödəniş USD', 'Daşıyıcıya nağd ödəniş AZN', 'Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR', 'Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD', 'Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN', 'Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR', 'Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD', 'Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN', 'Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR', 'Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD', 'Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN', 'Daşıyıcıya qalıq məbləğ EUR', 'Daşıyıcıya qalıq məbləğ USD', 'Daşıyıcıya qalıq məbləğ AZN', 'Digər xərclər EUR', 'Digər xərclər USD', 'Digər xərclər AZN', 'QEYD', 'İnvoice tarixi və nömrəsi', 'T.1', 'Ex.1', 'İnvoice məbləği EUR', 'İnvoice məbləği USD', 'İnvoice məbləği AZN', 'İnvoice fayl', 'Qaimə nömrəsi', 'Nağd alacağımız EUR', 'Nağd alacağımız USD', 'Nağd alacağımız AZN', 'Ödəniş Çexiya daxil olan EUR', 'Ödəniş Çexiya daxil olan USD', 'Ödəniş Çexiya daxil olan AZN', 'Ödəniş Türkiyə daxil olan EUR', 'Ödəniş Türkiyə daxil olan USD', 'Ödəniş Türkiyə daxil olan AZN', 'Ödəniş Azərbaycan daxil olan EUR', 'Ödəniş Azərbaycan daxil olan USD', 'Ödəniş Azərbaycan daxil olan AZN']
-head_columns_system_2 =['Status_N','Yükün halı', 'İcraçı', 'Yükgöndərən', 'Yükalan', 'Yükün adı', 'Pallet sayı', 'Çəkisi', 'Kub', 'Yükləmə tarixi', 'Maşının nömrəsi']
+head_columns_system =['Status_N', 'Yükün halı', 'İcraçı', 'Yükgöndərən', 'Yükalan', 'Yükün adı', 'Pallet sayı', 'Çəkisi', 'Kub'\
+                      'Yükləmə tarixi', 'Maşının nömrəsi', 'Çexiyadan verilən qiymət EUR', 'Biz verdiyimiz qiymət EUR', 
+                      'Biz verdiyimiz qiymət USD', 'Biz verdiyimiz qiymət AZN', 'Daşıyıcıdan verilən qiymət EUR', 
+                      'Daşıyıcıdan verilən qiymət USD', 'Daşıyıcıdan verilən qiymət AZN', 'Daşıyıcıya nağd ödəniş EUR', 
+                      'Daşıyıcıya nağd ödəniş USD', 'Daşıyıcıya nağd ödəniş AZN', 'Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR',
+                      'Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD', 'Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN',
+                      'Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR', 'Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD', 
+                      'Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN', 'Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR', 
+                      'Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD', 'Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN',
+                      'Daşıyıcıya qalıq məbləğ EUR', 'Daşıyıcıya qalıq məbləğ USD', 'Daşıyıcıya qalıq məbləğ AZN', "Daşıyıcıya olan borc EUR",
+                      "Daşıyıcıya olan borc USD", "Daşıyıcıya olan borc AZN","Yük alanın bizə borcu EUR", "Yük alanın bizə borcu USD",
+                      "Yük alanın bizə borcu AZN", 'Digər xərclər EUR', 'Digər xərclər USD', 'Digər xərclər AZN', 'QEYD', 
+                      'İnvoice tarixi və nömrəsi', 'T.1', 'Ex.1', 'İnvoice məbləği EUR', 'İnvoice məbləği USD', 'İnvoice məbləği AZN',
+                      'İnvoice fayl', 'Qaimə nömrəsi', 'Nağd alacağımız EUR', 'Nağd alacağımız USD', 'Nağd alacağımız AZN', 
+                      'Ödəniş Çexiya daxil olan EUR', 'Ödəniş Çexiya daxil olan USD', 'Ödəniş Çexiya daxil olan AZN', 
+                      'Ödəniş Türkiyə daxil olan EUR', 'Ödəniş Türkiyə daxil olan USD', 'Ödəniş Türkiyə daxil olan AZN',
+                      'Ödəniş Azərbaycan daxil olan EUR', 'Ödəniş Azərbaycan daxil olan USD', 'Ödəniş Azərbaycan daxil olan AZN']
 
-head_columns_europe = ["Status_N", "Yükün halı", "İcraçı", "Yükgöndərən", "Yükalan", "Yükün adı", "Pallet sayı", "Çəkisi", "Kub", "Yükləmə tarixi", "Maşının nömrəsi", "Çexiyadan verilən qiymət EUR", "Biz verdiyimiz qiymət EUR", "Biz verdiyimiz qiymət USD", "Biz verdiyimiz qiymət AZN", "Daşıyıcıdan verilən qiymət EUR", "Daşıyıcıdan verilən qiymət USD", "Daşıyıcıdan verilən qiymət AZN", "Daşıyıcıya nağd ödəniş EUR", "Daşıyıcıya nağd ödəniş USD", "Daşıyıcıya nağd ödəniş AZN", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN", "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR", "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD", "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN",  "Daşıyıcıya qalıq məbləğ EUR", "Daşıyıcıya qalıq məbləğ USD", "Daşıyıcıya qalıq məbləğ AZN", "Digər xərclər EUR", "Digər xərclər USD", "Digər xərclər AZN", "QEYD", "Anbardan yüklənmə tarixi",'T.1', 'Ex.1', "İnvoice tarixi və nömrəsi", "İnvoice məbləği EUR", "İnvoice məbləği USD", "İnvoice məbləği AZN", "İnvoice fayl", "Qaimə nömrəsi", "Nağd alacağımız EUR", "Nağd alacağımız USD", "Nağd alacağımız AZN", "Ödəniş Çexiya daxil olan EUR", "Ödəniş Çexiya daxil olan USD", "Ödəniş Çexiya daxil olan AZN", "Ödəniş Türkiyə daxil olan EUR", "Ödəniş Türkiyə daxil olan USD", "Ödəniş Türkiyə daxil olan AZN", "Ödəniş Azərbaycan daxil olan EUR", "Ödəniş Azərbaycan daxil olan USD", "Ödəniş Azərbaycan daxil olan AZN", "Yükün çatma tarixi"]
-head_columns_europe_2 =['Status_N', 'Yükün halı', 'İcraçı', 'Yükgöndərən', 'Yükalan', 'Yükün adı', 'Pallet sayı', 'Çəkisi', 'Kub', 'Yükləmə tarixi', 'Maşının nömrəsi']
 
-head_columns_avia = ["Status_N", "Yükün halı", "İcraçı", "Çıxış aeroport", "Gəliş aeroport", "Yükgöndərən", "Yükalan", "Yükün adı", "Pallet sayı", "Çəkisi", "Kub", "Yükləmə tarixi", "Aviaşirkətin adı", "Aviaşirkətdən verilən qiymət EUR", "Biz verdiyimiz qiymət EUR", "Biz verdiyimiz qiymət USD", "Biz verdiyimiz qiymət AZN", "Daşıyıcıya nağd ödəniş EUR", "Daşıyıcıya nağd ödəniş USD", "Daşıyıcıya nağd ödəniş AZN", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR", "Daşıyıcıya qalıq məbləğ EUR", "Daşıyıcıya qalıq məbləğ USD", "Daşıyıcıya qalıq məbləğ AZN", "Digər xərclər EUR", "Digər xərclər USD", "Digər xərclər AZN", "QEYD", "İnvoice tarixi və nömrəsi", "İnvoice məbləği EUR", "İnvoice məbləği USD", "İnvoice məbləği AZN", "İnvoice fayl", "Qaimə nömrəsi", "A.W.B", "Nağd alacağımız EUR", "Nağd alacağımız USD", "Nağd alacağımız AZN", "Ödəniş Çexiya daxil olan EUR", "Ödəniş Çexiya daxil olan USD", "Ödəniş Çexiya daxil olan AZN", "Yükün çatma tarixi"]
-head_columns_avia_2 =['Status_N', 'Yükün halı', "İcraçı", "Çıxış aeroport", "Gəliş aeroport", 'Yükgöndərən', 'Yükalan', 'Yükün adı', 'Pallet sayı', 'Çəkisi', 'Kub', 'Yükləmə tarixi', "Aviaşirkətin adı"]
+head_columns_system_2 =['Status_N','Yükün halı', 'İcraçı', 'Yükgöndərən', 'Yükalan', 'Yükün adı', 'Pallet sayı', 
+                        'Çəkisi', 'Kub', 'Yükləmə tarixi', 'Maşının nömrəsi']
 
-head_columns_russia = ["Status_N", "Yükün halı", "İcraçı", "Yükgöndərən", "Yükalan", "Yükün adı", "Pallet sayı", "Çəkisi", "Kub", "Yükləmə tarixi", "Maşının nömrəsi", "Daşıyıcıdan verilən qiymət USD", "Biz verdiyimiz qiymət EUR", "Biz verdiyimiz qiymət USD", "Biz verdiyimiz qiymət AZN", "Daşıyıcıya nağd ödəniş EUR", "Daşıyıcıya nağd ödəniş USD", "Daşıyıcıya nağd ödəniş AZN", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN", "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR", "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD", "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN", "Daşıyıcıya qalıq məbləğ EUR", "Daşıyıcıya qalıq məbləğ USD", "Daşıyıcıya qalıq məbləğ AZN", "Digər xərclər EUR", "Digər xərclər USD", "Digər xərclər AZN", "QEYD", "İnvoice tarixi və nömrəsi", "İnvoice məbləği EUR", "İnvoice məbləği USD", "İnvoice məbləği AZN", "İnvoice fayl", "Qaimə nömrəsi", "Nağd alacağımız EUR", "Nağd alacağımız USD", "Nağd alacağımız AZN", "Ödəniş Çexiya daxil olan EUR", "Ödəniş Çexiya daxil olan USD", "Ödəniş Çexiya daxil olan AZN", "Ödəniş Türkiyə daxil olan EUR", "Ödəniş Türkiyə daxil olan USD", "Ödəniş Türkiyə daxil olan AZN", "Ödəniş Azərbaycan daxil olan EUR", "Ödəniş Azərbaycan daxil olan USD", "Ödəniş Azərbaycan daxil olan AZN", "Yükün çatma tarixi"]
-head_columns_russia_2 =['Status_N', 'Yükün halı', 'İcraçı', 'Yükgöndərən', 'Yükalan', 'Yükün adı', 'Pallet sayı', 'Çəkisi', 'Kub', 'Yükləmə tarixi', 'Maşının nömrəsi']
+head_columns_europe = ["Status_N", "Yükün halı", "İcraçı", "Yükgöndərən", "Yükalan", "Yükün adı", "Pallet sayı", "Çəkisi", "Kub", 
+                        "Yükləmə tarixi", "Maşının nömrəsi", "Çexiyadan verilən qiymət EUR", "Biz verdiyimiz qiymət EUR", 
+                        "Biz verdiyimiz qiymət USD", "Biz verdiyimiz qiymət AZN", "Daşıyıcıdan verilən qiymət EUR", 
+                        "Daşıyıcıdan verilən qiymət USD", "Daşıyıcıdan verilən qiymət AZN", "Daşıyıcıya nağd ödəniş EUR", 
+                        "Daşıyıcıya nağd ödəniş USD", "Daşıyıcıya nağd ödəniş AZN", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR", 
+                        "Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN", 
+                        "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD", 
+                        "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN", "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR", 
+                        "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD", "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN",  
+                        "Daşıyıcıya qalıq məbləğ EUR", "Daşıyıcıya qalıq məbləğ USD", "Daşıyıcıya qalıq məbləğ AZN", 
+                        "Daşıyıcıya olan borc EUR", "Daşıyıcıya olan borc USD", "Daşıyıcıya olan borc AZN","Yük alanın bizə borcu EUR", 
+                        "Yük alanın bizə borcu USD", "Yük alanın bizə borcu AZN", "Digər xərclər EUR", "Digər xərclər USD", "Digər xərclər AZN",
+                        "QEYD", "Anbardan yüklənmə tarixi",'T.1', 'Ex.1', "İnvoice tarixi və nömrəsi", "İnvoice məbləği EUR",
+                        "İnvoice məbləği USD", "İnvoice məbləği AZN", "İnvoice fayl", "Qaimə nömrəsi", "Nağd alacağımız EUR",
+                        "Nağd alacağımız USD", "Nağd alacağımız AZN", "Ödəniş Çexiya daxil olan EUR", "Ödəniş Çexiya daxil olan USD",
+                        "Ödəniş Çexiya daxil olan AZN", "Ödəniş Türkiyə daxil olan EUR", "Ödəniş Türkiyə daxil olan USD", 
+                        "Ödəniş Türkiyə daxil olan AZN", "Ödəniş Azərbaycan daxil olan EUR", "Ödəniş Azərbaycan daxil olan USD",
+                        "Ödəniş Azərbaycan daxil olan AZN", "Yükün çatma tarixi"]
 
-head_columns_container = ["Status_N", "Yükün halı", "İcraçı", "Yükgöndərən", "Yükalan", "Yükün adı", "Pallet sayı", "Çəkisi", 'Kub', 'Dərəcəsi', "Yükləmə tarixi", "Daşıyan şirkətin adı", "Maşının nömrəsi", "Daşıyan şirkətdən alınan qiymət EUR", "Daşıyan şirkətdən alınan qiymət USD", "Biz verdiyimiz qiymət EUR", "Biz verdiyimiz qiymət USD", "Biz verdiyimiz qiymət AZN", "Daşıyıcıya nağd ödəniş EUR", "Daşıyıcıya nağd ödəniş USD", "Daşıyıcıya nağd ödəniş AZN", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN", "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR", "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD", "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN", "Daşıyıcıya qalıq məbləğ EUR", "Daşıyıcıya qalıq məbləğ USD", "Daşıyıcıya qalıq məbləğ AZN", "Digər xərclər EUR", "Digər xərclər USD", "Digər xərclər AZN", "QEYD", "İnvoice tarixi və nömrəsi", "İnvoice məbləği EUR", "İnvoice məbləği USD", "İnvoice məbləği AZN", "İnvoice fayl", "Qaimə nömrəsi", "Nağd alacağımız EUR", "Nağd alacağımız USD", "Nağd alacağımız AZN", "Ödəniş Çexiya daxil olan EUR", "Ödəniş Çexiya daxil olan USD", "Ödəniş Çexiya daxil olan AZN", "Ödəniş Türkiyə daxil olan EUR", "Ödəniş Türkiyə daxil olan USD", "Ödəniş Türkiyə daxil olan AZN", "Ödəniş Azərbaycan daxil olan EUR", "Ödəniş Azərbaycan daxil olan USD", "Ödəniş Azərbaycan daxil olan AZN", "Yükün çatma tarixi"]
-head_columns_container_2 =['Status_N', 'Yükün halı', 'İcraçı', 'Yükgöndərən', 'Yükalan', 'Yükün adı', 'Pallet sayı', 'Çəkisi', 'Kub', 'Dərəcəsi', 'Yükləmə tarixi',"Daşıyan şirkətin adı", 'Maşının nömrəsi']
+head_columns_europe_2 =['Status_N', 'Yükün halı', 'İcraçı', 'Yükgöndərən', 'Yükalan', 'Yükün adı', 'Pallet sayı', 'Çəkisi', 'Kub', 
+                        'Yükləmə tarixi', 'Maşının nömrəsi']
+
+head_columns_avia = ["Status_N", "Yükün halı", "İcraçı", "Çıxış aeroport", "Gəliş aeroport", "Yükgöndərən", "Yükalan", "Yükün adı", 
+                        "Pallet sayı", "Çəkisi", "Kub", "Yükləmə tarixi", "Aviaşirkətin adı", "Aviaşirkətdən verilən qiymət EUR", 
+                        "Biz verdiyimiz qiymət EUR", "Biz verdiyimiz qiymət USD", "Biz verdiyimiz qiymət AZN", "Daşıyıcıya nağd ödəniş EUR",
+                        "Daşıyıcıya nağd ödəniş USD", "Daşıyıcıya nağd ödəniş AZN", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR", 
+                        "Daşıyıcıya qalıq məbləğ EUR", "Daşıyıcıya qalıq məbləğ USD", "Daşıyıcıya qalıq məbləğ AZN", "Digər xərclər EUR",
+                        "Digər xərclər USD","Daşıyıcıya olan borc EUR","Daşıyıcıya olan borc USD","Daşıyıcıya olan borc AZN",
+                        "Yük alanın bizə borcu EUR","Yük alanın bizə borcu USD", "Yük alanın bizə borcu AZN", "Digər xərclər AZN", "QEYD",
+                        "İnvoice tarixi və nömrəsi", "İnvoice məbləği EUR", "İnvoice məbləği USD", "İnvoice məbləği AZN", "İnvoice fayl",
+                        "Qaimə nömrəsi", "A.W.B", "Nağd alacağımız EUR", "Nağd alacağımız USD", "Nağd alacağımız AZN",
+                        "Ödəniş Çexiya daxil olan EUR", "Ödəniş Çexiya daxil olan USD", "Ödəniş Çexiya daxil olan AZN", "Yükün çatma tarixi"]
+
+head_columns_avia_2 =['Status_N', 'Yükün halı', "İcraçı", "Çıxış aeroport", "Gəliş aeroport", 'Yükgöndərən', 'Yükalan', 'Yükün adı', 
+                        'Pallet sayı', 'Çəkisi', 'Kub', 'Yükləmə tarixi', "Aviaşirkətin adı"]
+
+head_columns_russia = ["Status_N", "Yükün halı", "İcraçı", "Yükgöndərən", "Yükalan", "Yükün adı", "Pallet sayı", "Çəkisi", "Kub", 
+                        "Yükləmə tarixi", "Maşının nömrəsi", "Daşıyıcıdan verilən qiymət USD", "Biz verdiyimiz qiymət EUR", 
+                        "Biz verdiyimiz qiymət USD", "Biz verdiyimiz qiymət AZN", "Daşıyıcıya nağd ödəniş EUR", "Daşıyıcıya nağd ödəniş USD",
+                        "Daşıyıcıya nağd ödəniş AZN", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD",
+                        "Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR", 
+                        "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN", 
+                        "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR", "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD",
+                        "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN", "Daşıyıcıya qalıq məbləğ EUR", "Daşıyıcıya qalıq məbləğ USD",
+                        "Daşıyıcıya qalıq məbləğ AZN", "Digər xərclər EUR", "Digər xərclər USD", "Daşıyıcıya olan borc EUR", 
+                        "Daşıyıcıya olan borc USD", "Daşıyıcıya olan borc AZN","Yük alanın bizə borcu EUR", "Yük alanın bizə borcu USD",
+                        "Yük alanın bizə borcu AZN", "Digər xərclər AZN", "QEYD", "İnvoice tarixi və nömrəsi", "İnvoice məbləği EUR",
+                        "İnvoice məbləği USD", "İnvoice məbləği AZN", "İnvoice fayl", "Qaimə nömrəsi", "Nağd alacağımız EUR",
+                        "Nağd alacağımız USD", "Nağd alacağımız AZN", "Ödəniş Çexiya daxil olan EUR", "Ödəniş Çexiya daxil olan USD", 
+                        "Ödəniş Çexiya daxil olan AZN", "Ödəniş Türkiyə daxil olan EUR", "Ödəniş Türkiyə daxil olan USD",
+                        "Ödəniş Türkiyə daxil olan AZN", "Ödəniş Azərbaycan daxil olan EUR", "Ödəniş Azərbaycan daxil olan USD",
+                        
+                        "Ödəniş Azərbaycan daxil olan AZN", "Yükün çatma tarixi"]
+head_columns_russia_2 =['Status_N', 'Yükün halı', 'İcraçı', 'Yükgöndərən', 'Yükalan', 'Yükün adı', 'Pallet sayı', 'Çəkisi', 'Kub', 
+                        'Yükləmə tarixi', 'Maşının nömrəsi']
+
+head_columns_container = ["Status_N", "Yükün halı", "İcraçı", "Yükgöndərən", "Yükalan", "Yükün adı", "Pallet sayı", "Çəkisi", 'Kub', 
+                        'Dərəcəsi', "Yükləmə tarixi", "Daşıyan şirkətin adı", "Maşının nömrəsi", "Daşıyan şirkətdən alınan qiymət EUR", 
+                        "Daşıyan şirkətdən alınan qiymət USD", "Biz verdiyimiz qiymət EUR", "Biz verdiyimiz qiymət USD", 
+                        "Biz verdiyimiz qiymət AZN", "Daşıyıcıya nağd ödəniş EUR", "Daşıyıcıya nağd ödəniş USD", "Daşıyıcıya nağd ödəniş AZN", 
+                        "Daşıyıcıya köçürmə ödəniş Çexiya hesabı EUR", "Daşıyıcıya köçürmə ödəniş Çexiya hesabı USD",
+                        "Daşıyıcıya köçürmə ödəniş Çexiya hesabı AZN", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı EUR", 
+                        "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı USD", "Daşıyıcıya köçürmə ödəniş Türkiyə hesabı AZN",
+                        "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı EUR", "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı USD", 
+                        "Daşıyıcıya köçürmə ödəniş Azərbaycanhesabı AZN", "Daşıyıcıya qalıq məbləğ EUR", "Daşıyıcıya qalıq məbləğ USD",
+                        "Daşıyıcıya qalıq məbləğ AZN", "Digər xərclər EUR", "Daşıyıcıya olan borc EUR", "Daşıyıcıya olan borc USD",
+                        "Daşıyıcıya olan borc AZN","Yük alanın bizə borcu EUR", "Yük alanın bizə borcu USD", "Yük alanın bizə borcu AZN", 
+                        "Digər xərclər USD", "Digər xərclər AZN", "QEYD", "İnvoice tarixi və nömrəsi", "İnvoice məbləği EUR",
+                        "İnvoice məbləği USD", "İnvoice məbləği AZN", "İnvoice fayl", "Qaimə nömrəsi", "Nağd alacağımız EUR",
+                        "Nağd alacağımız USD", "Nağd alacağımız AZN", "Ödəniş Çexiya daxil olan EUR", "Ödəniş Çexiya daxil olan USD",
+                        "Ödəniş Çexiya daxil olan AZN", "Ödəniş Türkiyə daxil olan EUR", "Ödəniş Türkiyə daxil olan USD", 
+                        "Ödəniş Türkiyə daxil olan AZN", "Ödəniş Azərbaycan daxil olan EUR", "Ödəniş Azərbaycan daxil olan USD", 
+                        "Ödəniş Azərbaycan daxil olan AZN", "Yükün çatma tarixi"]
+
+head_columns_container_2 =['Status_N', 'Yükün halı', 'İcraçı', 'Yükgöndərən', 'Yükalan', 'Yükün adı', 'Pallet sayı', 'Çəkisi', 'Kub', 
+                        'Dərəcəsi', 'Yükləmə tarixi',"Daşıyan şirkətin adı", 'Maşının nömrəsi']
 
 
 def add_get_params(resp):
