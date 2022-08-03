@@ -19,7 +19,7 @@ from django.utils.html import escape
 from sqlalchemy.orm import Session
 
 
-head_columns_system =['Status_N', 'Yükün halı', 'İcraçı', 'Yükgöndərən', 'Yükalan', 'Yükün adı', 'Pallet sayı', 'Çəkisi', 'Kub'\
+head_columns_system =['Status_N', 'Yükün halı', 'İcraçı', 'Yükgöndərən', 'Yükalan', 'Yükün adı', 'Pallet sayı', 'Çəkisi', 'Kub',
                       'Yükləmə tarixi', 'Maşının nömrəsi', 'Çexiyadan verilən qiymət EUR', 'Biz verdiyimiz qiymət EUR', 
                       'Biz verdiyimiz qiymət USD', 'Biz verdiyimiz qiymət AZN', 'Daşıyıcıdan verilən qiymət EUR', 
                       'Daşıyıcıdan verilən qiymət USD', 'Daşıyıcıdan verilən qiymət AZN', 'Daşıyıcıya nağd ödəniş EUR', 
