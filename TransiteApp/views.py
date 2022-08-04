@@ -184,13 +184,13 @@ def get_table(request):
 
                 # sum two columns and create report
 
-                example_df['Yükalanın ödədiyi pul EUR'] = example_df['Yükalanın ödədiyi pul EUR'].fillna()
-                example_df['Yükalanın ödədiyi pul USD'] = example_df['Yükalanın ödədiyi pul USD'].fillna()
-                example_df['Yükalanın ödədiyi pul AZN'] = example_df['Yükalanın ödədiyi pul AZN'].fillna()
+                example_df['Yükalanın ödədiyi pul EUR'] = example_df['Yükalanın ödədiyi pul EUR'].fillna(0)
+                example_df['Yükalanın ödədiyi pul USD'] = example_df['Yükalanın ödədiyi pul USD'].fillna(0)
+                example_df['Yükalanın ödədiyi pul AZN'] = example_df['Yükalanın ödədiyi pul AZN'].fillna(0)
 
-                example_df['Yükalanın ödəyəcəyi pul EUR'] = example_df['Yükalanın ödəyəcəyi pul EUR'].fillna()
-                example_df['Yükalanın ödəyəcəyi pul USD'] = example_df['Yükalanın ödəyəcəyi pul USD'].fillna()
-                example_df['Yükalanın ödəyəcəyi pul AZN'] = example_df['Yükalanın ödəyəcəyi pul AZN'].fillna()
+                example_df['Yükalanın ödəyəcəyi pul EUR'] = example_df['Yükalanın ödəyəcəyi pul EUR'].fillna(0)
+                example_df['Yükalanın ödəyəcəyi pul USD'] = example_df['Yükalanın ödəyəcəyi pul USD'].fillna(0)
+                example_df['Yükalanın ödəyəcəyi pul AZN'] = example_df['Yükalanın ödəyəcəyi pul AZN'].fillna(0)
 
                 example_df['Yükalanın bizə borcu EUR'] = example_df['Yükalanın ödəyəcəyi pul EUR'] - \
                     example_df['Yükalanın ödədiyi pul EUR']
