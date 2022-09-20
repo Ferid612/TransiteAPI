@@ -292,6 +292,7 @@ def login(request):
             user_type = user['user_type']
             user_region = user['region']
 
+
             payload = {
                 'id': user_id,
                 'user_type': user_type,
